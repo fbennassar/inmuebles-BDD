@@ -35,3 +35,7 @@ son para hacer el CRUD
 
 Aca esta (por fin) la logica de programacion, las clases cuentan con los metodos conectar y cerrar (de la clase Database en el paquete com.mycompany.db) e implementa los metodos de las interfaces
 su funcion es manejar los Scripts y logica de cada una de las solicitudes o statement SQL
+
+<h1>FlatLaf</h1>
+
+Digamos que es una libreria para que la interfaz visual no se vea horrible, la documentacion la tienen por aca: https://www.formdev.com/flatlaf/
