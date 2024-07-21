@@ -10,5 +10,5 @@ public interface DAOEmpleado {
 	public void actualizar(Empleado empleado);
 	public void eliminar(Empleado empleado);
 	public Empleado buscarPorId(int id);
-	public List<Empleado> buscarTodos();
+	public List<Empleado> buscarTodos() throws Exception;
 }
