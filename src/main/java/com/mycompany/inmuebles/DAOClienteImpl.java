@@ -1,6 +1,7 @@
 package com.mycompany.inmuebles;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.mycompany.db.Database;
@@ -30,8 +31,23 @@ public class DAOClienteImpl extends Database implements DAOCliente {
 	}
 
 	@Override
-	public void actualizar(Cliente cliente) {
-		// TODO Auto-generated method stub
+	public void actualizar(Cliente cliente) throws Exception {
+		try {
+			this.Conectar();
+			PreparedStatement ps = this.conexion.prepareStatement(
+					"UPDATE cliente SET nombre = ?, telefono = ?, email = ?, cedula = ? WHERE id = ?;");
+			ps.setString(1, cliente.getNombre());
+			ps.setString(2, cliente.getTelefono());
+			ps.setString(3, cliente.getEmail());
+			ps.setInt(4, cliente.getCedula());
+			ps.setInt(5, cliente.getId());
+			ps.executeUpdate();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.Cerrar();
+		}
 		
 	}
 
