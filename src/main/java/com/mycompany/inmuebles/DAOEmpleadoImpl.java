@@ -2,6 +2,7 @@ package com.mycompany.inmuebles;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,22 @@ import com.mycompany.models.Empleado;
 public class DAOEmpleadoImpl extends Database implements DAOEmpleado {
 
 	@Override
-	public void registrar(Empleado empleado) {
-		// TODO Auto-generated method stub
+	public void registrar(Empleado empleado) throws Exception {
+		
+		try {
+			this.Conectar();
+			PreparedStatement ps = this.conexion.prepareStatement("INSERT INTO empleado (nombre, telefono, email, cedula) VALUES (?, ?, ?, ?);");
+			ps.setString(1, empleado.getNombre());
+			ps.setString(2, empleado.getTelefono());
+			ps.setString(3, empleado.getEmail());
+			ps.setInt(4, empleado.getCedula());
+			ps.executeUpdate();
+		}
+		catch (Exception e) {
+			throw e;
+		} finally {
+			this.Cerrar();
+		}
 		
 	}
 
@@ -24,13 +39,23 @@ public class DAOEmpleadoImpl extends Database implements DAOEmpleado {
 	}
 
 	@Override
-	public void eliminar(Empleado empleado) {
-		// TODO Auto-generated method stub
+	public void eliminar(int idEmpleado) throws Exception {
+		
+		try {
+			this.Conectar();
+			PreparedStatement ps = this.conexion.prepareStatement("DELETE FROM empleado WHERE idEmpleado = ?;");
+			ps.setInt(1, idEmpleado);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			this.Cerrar();
+		}
 		
 	}
 
 	@Override
-	public Empleado buscarPorId(int id) {
+	public Empleado buscarPorCedula(int cedula) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

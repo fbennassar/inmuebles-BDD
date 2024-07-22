@@ -99,7 +99,7 @@ public class Principal extends JFrame {
 		btnEmpleado.putClientProperty("FlatLaf.styleClass", "h3");
 		btnEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Empleado empleadoView = new Empleado(); // Crea una instancia de la clase Compra
+				EmpleadoView empleadoView = new EmpleadoView(); // Crea una instancia de la clase Compra
 				empleadoView.setVisible(true); // Hace visible la ventana de Compra
 				((JFrame) SwingUtilities.getWindowAncestor(btnEmpleado)).dispose();
 			}

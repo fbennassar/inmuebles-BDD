@@ -23,7 +23,7 @@ public class Database {
         try {
             conexion = DriverManager.getConnection(DB_URL, USER, PASS);
             Class.forName(JDBC_DRIVER);
-            System.out.println("Conexión exitosa");
+            //System.out.println("Conexión exitosa");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -34,7 +34,7 @@ public class Database {
         if (conexion != null) {
             if (!conexion.isClosed()) {
                 conexion.close();
-                System.out.println("Conexión cerrada");
+                //System.out.println("Conexión cerrada");
             }
         }
     }
