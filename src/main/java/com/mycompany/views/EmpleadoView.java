@@ -95,6 +95,23 @@ public class EmpleadoView extends JFrame {
 		btnEditar.putClientProperty("FlatLaf.styleClass", "h3");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (tableEmpleados.getSelectedRow() > -1) {
+					try {
+						
+						int userId = (int) tableEmpleados.getValueAt(tableEmpleados.getSelectedRow(), 0);
+						DAOEmpleado dao = new DAOEmpleadoImpl();
+						EditarEmpleado editarEmpleado = new EditarEmpleado(dao.buscarPorId(userId));
+						editarEmpleado.setVisible(true);
+						((JFrame) SwingUtilities.getWindowAncestor(btnEditar)).dispose();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+				else {
+					return;
+				}
+				
 			}
 		});
 		btnEditar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -102,6 +119,24 @@ public class EmpleadoView extends JFrame {
 		btnEditar.setBackground(new Color(74, 36, 157));
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				// Busca empleados por nombre
+				DAOEmpleado daoEmpleado = new DAOEmpleadoImpl();
+				try {
+					DefaultTableModel model = (DefaultTableModel) tableEmpleados.getModel();
+					model.setRowCount(0);
+					for (com.mycompany.models.Empleado empleado : daoEmpleado
+							.buscarPorNombre(textFieldBusqueda.getText())) {
+						model.addRow(new Object[] { empleado.getId(), empleado.getCedula(), empleado.getNombre(),
+								empleado.getTelefono(), empleado.getEmail() });
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnBuscar.putClientProperty("FlatLaf.styleClass", "h3");
 		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.setForeground(Color.WHITE);

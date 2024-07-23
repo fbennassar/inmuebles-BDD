@@ -21,6 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.Cursor;
 
 public class Principal extends JFrame {
