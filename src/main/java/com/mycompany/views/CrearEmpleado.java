@@ -21,6 +21,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class CrearEmpleado extends JFrame {
 
@@ -100,9 +101,35 @@ public class CrearEmpleado extends JFrame {
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(textFieldInputNombre.getText().isEmpty() || textFieldInputCedula.getText().isEmpty() || textFieldInputTelefono.getText().isEmpty() || textFieldInputEmail.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+                    }
+				
+				// validacion de cedula que no tenga letras
+				
+				try {
+					Integer.parseInt(textFieldInputCedula.getText());
+				} catch (NumberFormatException e1) {
+					JOptionPane.showMessageDialog(null, "La cedula no puede contener letras", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				String telefono = textFieldInputTelefono.getText().replaceAll("-", "");
+				for (int i = 0; i < telefono.length(); i++) {
+				    char c = telefono.charAt(i);
+				    if (!Character.isDigit(c)) {
+				        // Si encuentra un carácter que no es un dígito, muestra un mensaje de error
+				        JOptionPane.showMessageDialog(null, "El telefono no puede contener letras", "Error", JOptionPane.ERROR_MESSAGE);
+				        return;
+				    }
+				}
+				
+				
+				
 				String nombre = textFieldInputNombre.getText();
 				int cedula = Integer.parseInt(textFieldInputCedula.getText());
-				String telefono = textFieldInputTelefono.getText();
 				String email = textFieldInputEmail.getText();
 				
 				Empleado empleado = new Empleado();

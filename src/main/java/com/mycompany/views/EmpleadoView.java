@@ -3,6 +3,7 @@ package com.mycompany.views;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -109,6 +110,7 @@ public class EmpleadoView extends JFrame {
 					}
 				}
 				else {
+					JOptionPane.showMessageDialog(null, "Seleccione un empleado para editar", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
@@ -147,15 +149,25 @@ public class EmpleadoView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// Elimina el empleado seleccionado
+				
 				int row = tableEmpleados.getSelectedRow();
-				int idEmpleado = (int) tableEmpleados.getValueAt(row, 0);
-				DAOEmpleado daoEmpleado = new DAOEmpleadoImpl();
-				try {
-					daoEmpleado.eliminar(idEmpleado);
-					cargarEmpleados();
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				
+				if (row > -1) {
+					int idEmpleado = (int) tableEmpleados.getValueAt(row, 0);
+					DAOEmpleado daoEmpleado = new DAOEmpleadoImpl();
+					try {
+						daoEmpleado.eliminar(idEmpleado);
+						cargarEmpleados();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
+				else {
+					JOptionPane.showMessageDialog(null, "Seleccione un empleado para eliminar", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 			}
 		});
 		btnEliminar.putClientProperty("FlatLaf.styleClass", "h3");
@@ -164,6 +176,7 @@ public class EmpleadoView extends JFrame {
 		btnEliminar.setBackground(new Color(74, 36, 157));
 		
 		textFieldBusqueda = new JTextField();
+		textFieldBusqueda.putClientProperty("JTextField.placeholderText", "Buscar por nombre");
 		textFieldBusqueda.setColumns(10);
 		
 		
