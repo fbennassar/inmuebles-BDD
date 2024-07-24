@@ -16,11 +16,16 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Compra extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTable tablePropiedades;
 
 	/**
 	 * Launch the application.
@@ -63,22 +68,37 @@ public class Compra extends JFrame {
 		btnInicio.putClientProperty("FlatLaf.styleClass", "h3");
 		btnInicio.setForeground(Color.WHITE);
 		btnInicio.setBackground(new Color(74, 36, 157));
+		
+		JScrollPane scrollPanePropiedades = new JScrollPane();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btnInicio, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(871, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnInicio, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPanePropiedades, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1017, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(21)
 					.addComponent(btnInicio, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(541, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+					.addComponent(scrollPanePropiedades, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
+		
+		tablePropiedades = new JTable();
+		tablePropiedades.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Tipo", "Precio", "Direccion", "Cuartos", "Aseos", "Estacionamiento", "Piscina", "Area deportiva"
+			}
+		));
+		scrollPanePropiedades.setViewportView(tablePropiedades);
 		contentPane.setLayout(gl_contentPane);
 	}
-
 }
