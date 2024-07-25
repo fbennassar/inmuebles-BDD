@@ -6,9 +6,10 @@ import com.mycompany.models.Estado;
 
 public interface DAOEstado {
 
-	public void registrar(Estado estado);
-	public void actualizar(Estado estado);
-	public void eliminar(Estado estado);
-	public Estado buscarPorId(int id);
-	public List<Estado> buscarTodos();
+	public void registrar(Estado estado) throws Exception;
+	public void actualizar(Estado estado) throws Exception;
+	public void eliminar(Estado estado) throws Exception;
+	public Estado buscarPorId(int id) throws Exception;
+	public List<Estado> buscarTodos() throws Exception;
+	public int buscarIdPorNombre(String estado);
 }

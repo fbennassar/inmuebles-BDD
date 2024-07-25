@@ -6,9 +6,10 @@ import com.mycompany.models.Municipio;
 
 public interface DAOMunicipio {
 
-	public void registrar(Municipio municipio);
-	public void actualizar(Municipio municipio);
-	public void eliminar(Municipio municipio);
-	public Municipio buscarPorId(int id);
-	public List<Municipio> buscarTodos();
+	public void registrar(Municipio municipio) throws Exception;
+	public void actualizar(Municipio municipio) throws Exception;
+	public void eliminar(Municipio municipio) throws Exception;
+	public Municipio buscarPorId(int id) throws Exception;
+	public List<Municipio> buscarTodos() throws Exception;
+	public int buscarIdPorNombre(String municipio);
 }

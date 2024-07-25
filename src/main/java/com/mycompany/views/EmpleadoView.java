@@ -50,13 +50,13 @@ public class EmpleadoView extends JFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
 	public EmpleadoView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1061, 645);
+		setBounds(100, 100, 1080, 680);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -238,11 +238,11 @@ public class EmpleadoView extends JFrame {
 				return columnEditables[column];
 			}
 		});
-		tableEmpleados.getColumnModel().getColumn(0).setResizable(false);
-		tableEmpleados.getColumnModel().getColumn(1).setResizable(false);
-		tableEmpleados.getColumnModel().getColumn(2).setResizable(false);
-		tableEmpleados.getColumnModel().getColumn(3).setResizable(false);
-		tableEmpleados.getColumnModel().getColumn(4).setResizable(false);
+		tableEmpleados.getColumnModel().getColumn(0).setResizable(true);
+		tableEmpleados.getColumnModel().getColumn(1).setResizable(true);
+		tableEmpleados.getColumnModel().getColumn(2).setResizable(true);
+		tableEmpleados.getColumnModel().getColumn(3).setResizable(true);
+		tableEmpleados.getColumnModel().getColumn(4).setResizable(true);
 		
 		
 		scrollPaneEmpleados.setViewportView(tableEmpleados);

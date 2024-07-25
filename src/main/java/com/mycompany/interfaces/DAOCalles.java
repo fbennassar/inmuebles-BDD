@@ -6,9 +6,10 @@ import com.mycompany.models.Calles;
 
 public interface DAOCalles {
 
-	public void registrar(Calles calle);
-	public void actualizar(Calles calle);
-	public void eliminar(Calles calle);
-	public Calles buscarPorId(int id);
-	public List<Calles> buscarTodos();
+	public void registrar(Calles calle) throws Exception;
+	public void actualizar(Calles calle) throws Exception;
+	public void eliminar(Calles calle) throws Exception;
+	public Calles buscarPorId(int id) throws Exception;
+	public List<Calles> buscarTodos() throws Exception;
+	public int buscarIdPorNombre(String calle);
 }

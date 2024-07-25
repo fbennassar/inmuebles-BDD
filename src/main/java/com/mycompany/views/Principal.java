@@ -92,6 +92,13 @@ public class Principal extends JFrame {
 		btnVender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		JButton btnReporte = new JButton("Reportes");
+		btnReporte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Reporte reporte = new Reporte(); // Crea una instancia de la clase Compra
+				reporte.setVisible(true); // Hace visible la ventana de Compra
+				((JFrame) SwingUtilities.getWindowAncestor(btnReporte)).dispose();
+			}
+		});
 		btnReporte.putClientProperty("FlatLaf.styleClass", "h2");
 		btnReporte.setForeground(Color.WHITE);
 		btnReporte.setBackground(new Color(74, 36, 157));
