@@ -71,8 +71,27 @@ public class DAOEmpleadoImpl extends Database implements DAOEmpleado {
 
 	@Override
 	public Empleado buscarPorCedula(int cedula) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Empleado empleado = new Empleado();
+		try {
+			this.Conectar();
+			PreparedStatement ps = this.conexion.prepareStatement("SELECT * FROM empleado WHERE cedula = ?;");
+			ps.setInt(1, cedula);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				empleado.setId(rs.getInt("idEmpleado"));
+				empleado.setNombre(rs.getString("nombre"));
+				empleado.setTelefono(rs.getString("telefono"));
+				empleado.setEmail(rs.getString("email"));
+				empleado.setCedula(rs.getInt("cedula"));
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			this.Cerrar();
+		}
+		return empleado;
 	}
 	
 	@Override
@@ -163,6 +182,27 @@ public class DAOEmpleadoImpl extends Database implements DAOEmpleado {
 			this.Cerrar();
 		}
 		return empleado;
+	}
+	
+	@Override
+	public int buscarIdPorNombre(String Nombre) throws Exception {
+		int idEmpleado = -1;
+	    try {
+	        this.Conectar();
+	        String sql = "SELECT idEmpleado FROM empleado WHERE nombre = ?";
+	        PreparedStatement ps = this.conexion.prepareStatement(sql);
+	        ps.setString(1, Nombre);
+	        ResultSet rs = ps.executeQuery();
+	        
+	        if (rs.next()) {
+	            idEmpleado = rs.getInt("idEmpleado");
+	        }
+	    } catch (Exception e) {
+	        throw e;
+	    } finally {
+	        this.Cerrar();
+	    }
+	    return idEmpleado;
 	}
 
 

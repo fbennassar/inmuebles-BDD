@@ -6,9 +6,10 @@ import com.mycompany.models.Direccion;
 
 public interface DAODireccion {
 
-	public void registrar(Direccion direccion);
-	public void actualizar(Direccion direccion);
-	public void eliminar(Direccion direccion);
-	public Direccion buscarPorId(int id);
-    public List<Direccion> buscarTodos();
+	public void registrar(Direccion direccion) throws Exception;
+	public void actualizar(Direccion direccion) throws Exception;
+	public void eliminar(Direccion direccion) throws Exception;
+	public Direccion buscarPorId(int id) throws Exception;
+    public List<Direccion> buscarTodos() throws Exception;
+	public int buscarIdPorDetalle(String detalle) throws Exception;
 }

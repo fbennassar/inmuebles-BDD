@@ -1,6 +1,7 @@
 package com.mycompany.inmuebles;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class DAOClienteImpl extends Database implements DAOCliente {
 			ps.setString(3, cliente.getEmail());
 			ps.setInt(4, cliente.getCedula());
 			ps.executeUpdate();
+			ps.close();
 		}
 		catch (Exception e) {
 			throw e;
@@ -67,6 +69,56 @@ public class DAOClienteImpl extends Database implements DAOCliente {
 	public List<Cliente> buscarTodos() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Cliente buscarPorCedula(int cedula) throws Exception {
+		Cliente cliente = null;
+		try {
+			this.Conectar();
+			PreparedStatement ps = this.conexion.prepareStatement("SELECT * FROM cliente WHERE cedula = ?;");
+			ps.setInt(1, cedula);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				cliente = new Cliente();
+                cliente.setId(rs.getInt("idCliente"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setCedula(rs.getInt("cedula"));
+
+			}
+			ps.close();
+			rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				this.Cerrar();
+			}
+		
+		return cliente;
+	}
+	
+	@Override
+	public int buscarIdPorCedula(int cedula) throws Exception {
+		int idCliente = -1;
+	    try {
+	        this.Conectar();
+	        String sql = "SELECT idCliente FROM cliente WHERE cedula = ?";
+	        PreparedStatement ps = this.conexion.prepareStatement(sql);
+	        ps.setInt(1, cedula);
+	        ResultSet rs = ps.executeQuery();
+	        
+	        if (rs.next()) {
+	            idCliente = rs.getInt("idCliente");
+	        }
+	    } catch (Exception e) {
+	        throw e;
+	    } finally {
+	        this.Cerrar();
+	    }
+	    return idCliente;
 	}
 
 }

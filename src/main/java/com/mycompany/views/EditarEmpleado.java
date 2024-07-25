@@ -41,7 +41,7 @@ public class EditarEmpleado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CrearEmpleado frame = new CrearEmpleado();
+					EditarEmpleado frame = new EditarEmpleado(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -223,4 +223,5 @@ public class EditarEmpleado extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
 }

@@ -90,12 +90,16 @@ public class CrearEmpleado extends JFrame {
 		textFieldInputEmail.setColumns(10);
 		
 		JLabel lblInputNombre = new JLabel("Nombre");
+		textFieldInputNombre.putClientProperty("JTextField.placeholderText", "Ingresar nombre");
 		
 		JLabel lblInputCedula = new JLabel("Cedula");
+		textFieldInputCedula.putClientProperty("JTextField.placeholderText", "Ingresar cedula");
 		
 		JLabel lblInputTelefono = new JLabel("Telefono");
+		textFieldInputTelefono.putClientProperty("JTextField.placeholderText", "Ingresar telefono");
 		
 		JLabel lblInputEmail = new JLabel("Email");
+		textFieldInputEmail.putClientProperty("JTextField.placeholderText", "Ingresar email");
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
