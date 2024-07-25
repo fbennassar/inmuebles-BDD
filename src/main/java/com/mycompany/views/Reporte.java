@@ -19,6 +19,8 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
@@ -139,7 +141,8 @@ public class Reporte extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				JTable tabla = tableReporte;
-				String path = "C:\\Users\\TECNO\\Desktop\\reporte.pdf";
+				String userHome = System.getProperty("user.home");
+				String path = userHome + File.separator + "Desktop" + File.separator + "reporte.pdf";
 				exportarPdf(tabla, path);
 			}
 		});
